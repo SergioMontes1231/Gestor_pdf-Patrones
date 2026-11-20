@@ -140,3 +140,27 @@ ON Crea(id_autor);
 
 CREATE INDEX IF NOT EXISTS idx_tiene_etiqueta
 ON Tiene(id_etiqueta);
+
+-- =========================================
+-- TABLA: Historial
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS Historial (
+    id_historial INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_pdf INTEGER NOT NULL,
+    fecha_apertura TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_pdf) REFERENCES PDFs(id_pdf)
+        ON DELETE CASCADE
+);
+
+-- =========================================
+-- TABLA: Progreso
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS Progreso (
+    id_pdf INTEGER PRIMARY KEY,
+    pagina_actual INTEGER NOT NULL DEFAULT 1,
+    fecha_actualizacion TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_pdf) REFERENCES PDFs(id_pdf)
+        ON DELETE CASCADE
+);
