@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+{{ libro.nombre_pdf }} - Lector PDF
+{% endblock %}
+
+{% block contenido %}
+
+<section class="lector_pdf">
+
+    <header class="encabezado_lector">
+
+        <a href="{{ url_for('biblioteca.biblioteca') }}">
+            ← Biblioteca
+        </a>
+
+        <h1>{{ libro.nombre_pdf }}</h1>
+
+    </header>
+
+    <div class="controles_lector">
+
+        <button
+            id="pagina_anterior"
+            type="button"
+        >
+            Página anterior
+        </button>
+
+        <div class="indicador_pagina">
+
+            <input
+                type="number"
+                id="pagina_actual"
+                min="1"
+                max="{{ libro.total_paginas }}"
+                value="{{ pagina_actual }}"
+            >
+
+            <span>
+                / {{ libro.total_paginas }}
+            </span>
+
+        </div>
+
+        <button
+            id="pagina_siguiente"
+            type="button"
+        >
+            Página siguiente
+        </button>
+
+    </div>
+
+    <div class="contenedor_documento">
+
+        <img
+            id="pagina_pdf"
+            src="{{ url_for(
+                'lector.obtener_pagina',
+                id_pdf=libro.id_pdf,
+                numero_pagina=pagina_actual
+            ) }}"
+            alt="Página {{ pagina_actual }} del documento"
+        >
+
+    </div>
+
+</section>
+
+<script>
+
+    const ID_PDF = {{ libro.id_pdf }};
+
+    const TOTAL_PAGINAS = {{ libro.total_paginas }};
+
+    const PAGINA_INICIAL = {{ pagina_actual }};
+
+</script>
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/lector.js'
+    ) }}"
+></script>
+
+{% endblock %}

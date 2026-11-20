@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Biblioteca - Biblioteca PDF
+{% endblock %}
+
+{% block contenido %}
+
+<section class="pagina_biblioteca">
+
+    <div class="encabezado_biblioteca">
+
+        <div>
+            <h1>Mi biblioteca</h1>
+
+            <p>
+                Todos tus documentos PDF en un solo lugar.
+            </p>
+        </div>
+
+    </div>
+
+    <section class="buscador">
+
+        <form action="{{ url_for('biblioteca.buscar') }}"
+              method="GET">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Buscar un libro..."
+                value="{{ busqueda if busqueda else '' }}"
+            >
+
+            <button type="submit">
+                Buscar
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="lista_libros">
+
+        {% if libros %}
+
+            {% for libro in libros %}
+
+                <article class="tarjeta_libro">
+
+                    <div class="portada_libro">
+
+                        {% if libro.ruta_portada_pdf %}
+
+                            <img
+                                src="{{ libro.ruta_portada_pdf }}"
+                                alt="Portada de {{ libro.nombre_pdf }}"
+                            >
+
+                        {% else %}
+
+                            <div class="portada_predeterminada">
+                                PDF
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="informacion_libro">
+
+                        <h2>
+                            {{ libro.nombre_pdf }}
+                        </h2>
+
+                        <p>
+                            {{ libro.descripcion_pdf or
+                               "Sin descripción disponible." }}
+                        </p>
+
+                        <p class="paginas_libro">
+                            {{ libro.total_paginas }} páginas
+                        </p>
+
+                        <div class="acciones_libro">
+
+                            <a href="{{ url_for(
+                                'libros.detalle_libro',
+                                id_pdf=libro.id_pdf
+                            ) }}">
+                                Ver detalles
+                            </a>
+
+                            <a href="{{ url_for(
+                                'lector.leer_pdf',
+                                id_pdf=libro.id_pdf
+                            ) }}">
+                                Leer
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="biblioteca_vacia">
+
+                {% if busqueda %}
+
+                    <h2>No se encontraron resultados</h2>
+
+                    <p>
+                        No encontramos libros que coincidan
+                        con "{{ busqueda }}".
+                    </p>
+
+                {% else %}
+
+                    <h2>Tu biblioteca está vacía</h2>
+
+                    <p>
+                        Todavía no has registrado ningún PDF.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</section>
+
+{% endblock %}

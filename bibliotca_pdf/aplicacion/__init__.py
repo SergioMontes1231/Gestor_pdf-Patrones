@@ -10,7 +10,12 @@ def crear_aplicacion():
     Crea y configura la aplicación Flask.
     """
 
-    app = Flask(__name__)
+    app = Flask(
+        __name__,
+        template_folder="plantillas",
+        static_folder="archivos_estaticos"
+    )
+
 
     # Configuración básica
     app.config["SECRET_KEY"] = "clave-desarrollo"

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Inicio - Biblioteca PDF
+{% endblock %}
+
+{% block contenido %}
+
+<section class="pagina_inicio">
+
+    <div class="bienvenida">
+
+        <h1>Bienvenido a tu biblioteca</h1>
+
+        <p>
+            Organiza, consulta y lee tus documentos PDF
+            desde un solo lugar.
+        </p>
+
+        <a href="{{ url_for('biblioteca.biblioteca') }}"
+           class="boton">
+
+            Explorar biblioteca
+
+        </a>
+
+    </div>
+
+    <section class="opciones_inicio">
+
+        <h2>¿Qué deseas hacer?</h2>
+
+        <div class="contenedor_opciones">
+
+            <article class="tarjeta_opcion">
+
+                <h3>Biblioteca</h3>
+
+                <p>
+                    Consulta todos tus documentos PDF
+                    almacenados.
+                </p>
+
+                <a href="{{ url_for('biblioteca.biblioteca') }}">
+                    Ver biblioteca
+                </a>
+
+            </article>
+
+            <article class="tarjeta_opcion">
+
+                <h3>Grupos</h3>
+
+                <p>
+                    Organiza tus documentos mediante
+                    grupos personalizados.
+                </p>
+
+                <a href="{{ url_for('grupos.grupos') }}">
+                    Ver grupos
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</section>
+
+{% endblock %}
