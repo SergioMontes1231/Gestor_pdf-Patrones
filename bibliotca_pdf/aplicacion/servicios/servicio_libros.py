@@ -1,19 +1,32 @@
 from aplicacion.repositorios.repositorio_libros import (
     RepositorioLibros
 )
+from aplicacion.servicios.servicio_pdf import (
+    ServicioPDF
+)
 
 
 class ServicioLibros:
 
-    def __init__(self, repositorio=None):
+    def __init__(
+        self,
+        repositorio=None,
+        servicio_pdf=None
+    ):
+
         self.repositorio = (
             repositorio
             or RepositorioLibros()
         )
 
+        self.servicio_pdf = (
+            servicio_pdf
+            or ServicioPDF()
+        )
+
     def registrar_libro(self, libro):
         """
-        Registra un libro en la biblioteca.
+        Registra un libro validando previamente su PDF.
         """
 
         if not libro.nombre_pdf.strip():
@@ -21,17 +34,27 @@ class ServicioLibros:
                 "El nombre del libro no puede estar vacío."
             )
 
-        if libro.total_paginas <= 0:
-            raise ValueError(
-                "El libro debe tener al menos una página."
-            )
-
         if not libro.ruta_archivo_pdf:
             raise ValueError(
                 "El libro debe tener una ruta de archivo."
             )
 
-        return self.repositorio.guardar(libro)
+        # Validar el PDF
+        self.servicio_pdf.validar_pdf(
+            libro.ruta_archivo_pdf
+        )
+
+        # Obtener automáticamente el número de páginas
+        libro.total_paginas = (
+            self.servicio_pdf.obtener_numero_paginas(
+                libro.ruta_archivo_pdf
+            )
+        )
+
+        # Guardar el libro en la base de datos
+        return self.repositorio.guardar(
+            libro
+        )
 
     def obtener_libro(self, id_pdf):
         """
