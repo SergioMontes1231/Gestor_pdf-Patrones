@@ -1,19 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const buscador = document.querySelector(
-        ".buscador input"
+    const botonImportar = document.getElementById(
+        "boton_importar"
     );
 
-    if (!buscador) {
+    const formularioImportacion = document.getElementById(
+        "formulario_importacion"
+    );
+
+    // Si los elementos no existen en esta página,
+    // no realizar ninguna acción.
+    if (
+        !botonImportar ||
+        !formularioImportacion
+    ) {
         return;
     }
 
-    buscador.addEventListener(
-        "input",
+    botonImportar.addEventListener(
+        "click",
         () => {
 
-            // Aquí posteriormente podremos implementar
-            // búsqueda dinámica sin recargar la página.
+            formularioImportacion.classList.toggle(
+                "activo"
+            );
 
         }
     );
