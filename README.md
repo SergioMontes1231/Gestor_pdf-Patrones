@@ -78,26 +78,26 @@ biblioteca_pdf/
       - _ _ init _ _.py
       - lector_pdf.py
       - adaptador_pymupdf.py
-    - estructuras/
-      - _ _ init _ _.py
-      - lista_enlazada.py
-    - plantillas/
-      - base.html
-      - inicio.html
-      - biblioteca.html
-      - detalle_libro.html
-      - lector.html
-      - grupos.html
-      - archivos_estaticos/
-        - css/
-          - estilo.css
-          - biblioteca.css
-          - lector.css
-        - js/
-          - principal.js
-          - biblioteca.js
-          - lector.js
-        - imagenes/
+  - estructuras/
+    - _ _ init _ _.py
+    - lista_enlazada.py
+  - plantillas/
+    - base.html
+    - inicio.html
+    - biblioteca.html
+    - detalle_libro.html
+    - lector.html
+    - grupos.html
+  - archivos_estaticos/
+    - css/
+      - estilo.css
+      - biblioteca.css
+      - lector.css
+    - js/
+      - principal.js
+      - biblioteca.js
+      - lector.js
+    - imagenes/
 - datos/
   - biblioteca.db
 - documentos/
