@@ -9,8 +9,12 @@
 
     <title>{% block titulo %}Biblioteca PDF{% endblock %}</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/estilo.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/biblioteca.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lector.css') }}">
+
 </head>
 
 <body>
@@ -33,7 +37,7 @@
                 Biblioteca
             </a>
 
-            <a href="{{ url_for('grupos.grupos') }}">
+            <a href="{{ url_for('grupos.mostrar_grupos') }}">
                 Grupos
             </a>
 
@@ -56,6 +60,19 @@
 
     </footer>
 
+    <script
+        src="{{ url_for(
+            'static',
+            filename='js/principal.js'
+        ) }}"
+    ></script>
+
+    <script
+        src="{{ url_for(
+            'static',
+            filename='js/biblioteca.js'
+        ) }}"
+    ></script>
 </body>
 
 </html>

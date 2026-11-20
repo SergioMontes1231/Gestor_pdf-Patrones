@@ -13,19 +13,43 @@ RUTA_ESQUEMA = Path(__file__).parent / "esquema.sql"
 def inicializar_base_datos():
     """
     Crea las tablas de la base de datos
-    utilizando el esquema SQL definido.
+    y registra los datos iniciales.
     """
 
     # Leer el archivo SQL
-    with open(RUTA_ESQUEMA, "r", encoding="utf-8") as archivo:
+    with open(
+        RUTA_ESQUEMA,
+        "r",
+        encoding="utf-8"
+    ) as archivo:
+
         esquema = archivo.read()
 
-    # Ejecutar el esquema en la base de datos
+    # Crear las tablas
     with obtener_conexion() as conexion:
-        conexion.executescript(esquema)
 
-    print("Base de datos inicializada correctamente.")
-    print(f"Ubicación: {RUTA_BASE_DATOS}")
+        conexion.executescript(
+            esquema
+        )
+
+        # Registrar estado inicial
+        conexion.execute(
+            """
+            INSERT OR IGNORE INTO Estados (
+                id_estado,
+                nombre_estado
+            )
+            VALUES (1, 'Sin leer')
+            """
+        )
+
+    print(
+        "Base de datos inicializada correctamente."
+    )
+
+    print(
+        f"Ubicación: {RUTA_BASE_DATOS}"
+    )
 
 
 if __name__ == "__main__":

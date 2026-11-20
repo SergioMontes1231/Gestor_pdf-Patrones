@@ -208,3 +208,346 @@
     }
 
 }
+
+/* =========================================
+   IMPORTACIÓN DE PDF
+========================================= */
+
+.formulario_importacion {
+    display: none;
+
+    background-color: var(--fondo_tarjeta);
+
+    border: 1px solid var(--color_borde);
+    border-radius: var(--radio);
+
+    padding: 25px;
+
+    margin-bottom: 30px;
+}
+
+.formulario_importacion.activo {
+    display: block;
+}
+
+.formulario_importacion form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formulario_importacion textarea {
+    resize: vertical;
+}
+
+.formulario_importacion input[type="file"] {
+    width: 100%;
+}
+
+.acciones_importacion {
+    display: flex;
+    justify-content: flex-end;
+}
+/* Formulario para crear grupos */
+
+#formulario_grupo {
+    margin-bottom: 25px;
+}
+
+
+/* Contenedor de grupos */
+
+.grupos_contenedor {
+    margin-top: 25px;
+}
+
+
+.grupos_grid {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(250px, 1fr)
+    );
+
+    gap: 20px;
+}
+
+
+/* Tarjetas de grupos */
+
+.tarjeta_grupo {
+    background: var(--color_tarjeta);
+
+    border: 1px solid var(--color_borde);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.portada_grupo {
+    height: 150px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--color_fondo);
+}
+
+
+.portada_grupo img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.portada_predeterminada {
+    font-size: 60px;
+}
+
+
+.informacion_grupo {
+    padding: 20px;
+
+    flex: 1;
+}
+
+
+.informacion_grupo h2 {
+    margin-bottom: 10px;
+}
+
+
+.informacion_grupo p {
+    color: var(--color_texto_secundario);
+
+    line-height: 1.5;
+}
+
+
+.acciones_grupo {
+    padding: 15px 20px;
+
+    border-top: 1px solid var(--color_borde);
+}
+
+
+.acciones_grupo form {
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+
+.boton_eliminar {
+    background: #a83232;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 15px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+
+.boton_eliminar:hover {
+    background: #c94444;
+}
+
+/* Grupos asociados a un documento */
+
+.seccion_grupos_libro {
+    margin-top: 30px;
+    padding: 20px;
+
+    background: var(--color_tarjeta);
+
+    border: 1px solid var(--color_borde);
+    border-radius: 12px;
+}
+
+
+.seccion_grupos_libro h2 {
+    margin-bottom: 20px;
+}
+
+
+.grupos_asignados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.grupo_asignado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px;
+
+    background: var(--color_fondo);
+
+    border-radius: 8px;
+}
+
+
+.formulario_asignar_grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+.formulario_asignar_grupo select {
+    padding: 10px;
+
+    border-radius: 6px;
+
+    border: 1px solid var(--color_borde);
+}
+
+/* Botón para visualizar el contenido de un grupo */
+
+.boton_ver_grupo {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 15px;
+
+    background: var(--color_primario);
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    text-align: center;
+}
+
+
+.boton_ver_grupo:hover {
+    opacity: 0.85;
+}
+
+
+/* Página de detalles del grupo */
+
+.encabezado_biblioteca a {
+    display: inline-block;
+
+    margin-top: 10px;
+}
+
+
+/* Documentos dentro de grupos */
+
+.tarjeta_libro {
+    background: var(--color_tarjeta);
+
+    border: 1px solid var(--color_borde);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.informacion_libro {
+    padding: 20px;
+
+    flex: 1;
+}
+
+
+.informacion_libro h2 {
+    margin-bottom: 10px;
+}
+
+
+.informacion_libro p {
+    margin-bottom: 10px;
+}
+
+
+.acciones_libro {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding: 15px 20px;
+
+    border-top: 1px solid var(--color_borde);
+}
+
+
+.acciones_libro a {
+    text-decoration: none;
+}
+
+/* Búsqueda */
+
+.formulario_busqueda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+
+.formulario_busqueda input {
+    flex: 1;
+    min-width: 200px;
+}
+
+
+.resultado_busqueda {
+    margin-bottom: 20px;
+    padding: 15px;
+
+    background: var(--color_tarjeta);
+
+    border-radius: 8px;
+}
+
+/* Autores */
+
+.seccion_grupos_libro {
+    margin-bottom: 25px;
+}
+
+
+.formulario_asignar_grupo input,
+.formulario_asignar_grupo select {
+    width: 100%;
+    padding: 10px;
+}

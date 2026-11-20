@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    {{ grupo.nombre_grupo }} - Biblioteca PDF
+{% endblock %}
+
+{% block contenido %}
+
+<section class="encabezado_biblioteca">
+
+    <div>
+
+        <h1>
+            {{ grupo.nombre_grupo }}
+        </h1>
+
+        <p>
+            {{ grupo.descripcion_grupo or "Sin descripción." }}
+        </p>
+
+    </div>
+
+    <a href="{{ url_for('grupos.mostrar_grupos') }}">
+        Volver a grupos
+    </a>
+
+</section>
+
+
+<section class="biblioteca_contenedor">
+
+    {% if libros %}
+
+        <div class="biblioteca_grid">
+
+            {% for libro in libros %}
+
+                <article class="tarjeta_libro">
+
+                    <div class="portada_libro">
+
+                        {% if libro["ruta_portada_pdf"] %}
+
+                            <img
+                                src="{{ libro['ruta_portada_pdf'] }}"
+                                alt="{{ libro['nombre_pdf'] }}"
+                            >
+
+                        {% else %}
+
+                            <div class="portada_predeterminada">
+                                📖
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="informacion_libro">
+
+                        <h2>
+                            {{ libro["nombre_pdf"] }}
+                        </h2>
+
+                        <p>
+                            {{ libro["descripcion_pdf"] or
+                            "Sin descripción." }}
+                        </p>
+
+                        <p>
+                            Páginas:
+                            {{ libro["total_paginas"] }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="acciones_libro">
+
+                        <a
+                            href="{{ url_for(
+                                'libros.detalle_libro',
+                                id_pdf=libro['id_pdf']
+                            ) }}"
+                        >
+                            Detalles del libro
+                        </a>
+
+                        <a
+                            href="{{ url_for(
+                                'lector.leer_pdf',
+                                id_pdf=libro['id_pdf']
+                            ) }}"
+                        >
+                            Leer
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="estado_vacio">
+
+            <h2>Este grupo está vacío</h2>
+
+            <p>
+                Todavía no hay documentos asignados a este grupo.
+            </p>
+
+            <a href="{{ url_for('biblioteca.biblioteca') }}">
+                Ir a la biblioteca
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

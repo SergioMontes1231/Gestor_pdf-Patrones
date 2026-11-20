@@ -193,22 +193,13 @@ class RepositorioLibros(RepositorioBase):
         )
 
     def asociar_autor(self, id_pdf, id_autor):
-        """
-        Relaciona un libro con un autor.
-        """
-
-        consulta = """
-            INSERT OR IGNORE INTO Crea (
-                id_pdf,
-                id_autor
-            )
-            VALUES (?, ?)
-        """
-
         self.ejecutar(
-            consulta,
+            """
+            INSERT OR IGNORE INTO Crea (id_pdf, id_autor)
+            VALUES (?, ?)
+            """,
             (id_pdf, id_autor)
-        )
+    )
 
     def quitar_autor(self, id_pdf, id_autor):
         """
