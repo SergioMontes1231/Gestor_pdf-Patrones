@@ -1,0 +1,99 @@
+/* =========================================
+   LECTOR PDF
+========================================= */
+
+.lector_pdf {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* =========================================
+   ENCABEZADO DEL LECTOR
+========================================= */
+
+.encabezado_lector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.encabezado_lector h1 {
+    font-size: 24px;
+}
+
+/* =========================================
+   CONTROLES
+========================================= */
+
+.controles_lector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+
+    background-color: var(--fondo_secundario);
+
+    padding: 20px;
+
+    border-radius: var(--radio);
+}
+
+.indicador_pagina {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.indicador_pagina input {
+    width: 80px;
+    text-align: center;
+}
+
+/* =========================================
+   DOCUMENTO
+========================================= */
+
+.contenedor_documento {
+    background-color: var(--fondo_secundario);
+
+    padding: 30px;
+
+    border-radius: var(--radio);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    min-height: 500px;
+}
+
+#pagina_pdf {
+    max-width: 100%;
+    height: auto;
+
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .encabezado_lector {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .controles_lector {
+        flex-wrap: wrap;
+    }
+
+    .contenedor_documento {
+        padding: 10px;
+    }
+
+}

@@ -1,0 +1,279 @@
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+:root {
+    --fondo: #12141b;
+    --fondo_secundario: #1b1e27;
+    --fondo_tarjeta: #222632;
+
+    --color_primario: #8b7cf6;
+    --color_primario_hover: #a296ff;
+
+    --color_texto: #e8eaf0;
+    --color_texto_secundario: #a0a5b5;
+
+    --color_borde: #343847;
+
+    --color_error: #e57373;
+
+    --radio: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--fondo);
+    color: var(--color_texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+.encabezado {
+    background-color: var(--fondo_secundario);
+    border-bottom: 1px solid var(--color_borde);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 40px;
+}
+
+.logo a {
+    color: var(--color_primario);
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* =========================================
+   NAVEGACIÓN
+========================================= */
+
+.navegacion {
+    display: flex;
+    gap: 25px;
+}
+
+.navegacion a {
+    color: var(--color_texto_secundario);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.navegacion a:hover {
+    color: var(--color_primario_hover);
+}
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+.contenido {
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+    padding: 40px;
+}
+
+/* =========================================
+   TÍTULOS Y TEXTOS
+========================================= */
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: var(--color_texto_secundario);
+    line-height: 1.6;
+}
+
+/* =========================================
+   BOTONES Y ENLACES
+========================================= */
+
+button,
+.boton {
+    background-color: var(--color_primario);
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 12px 18px;
+
+    font-size: 15px;
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+button:hover,
+.boton:hover {
+    background-color: var(--color_primario_hover);
+    transform: translateY(-2px);
+}
+
+a {
+    color: var(--color_primario);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================================
+   TARJETAS
+========================================= */
+
+.tarjeta_opcion,
+.tarjeta_libro,
+.tarjeta_grupo {
+    background-color: var(--fondo_tarjeta);
+
+    border: 1px solid var(--color_borde);
+    border-radius: var(--radio);
+
+    padding: 20px;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s;
+}
+
+.tarjeta_opcion:hover,
+.tarjeta_libro:hover,
+.tarjeta_grupo:hover {
+    transform: translateY(-4px);
+    border-color: var(--color_primario);
+}
+
+/* =========================================
+   FORMULARIOS
+========================================= */
+
+input,
+textarea,
+select {
+    background-color: var(--fondo_secundario);
+    color: var(--color_texto);
+
+    border: 1px solid var(--color_borde);
+    border-radius: 8px;
+
+    padding: 12px;
+
+    font-size: 15px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color_primario);
+}
+
+/* =========================================
+   PORTADAS
+========================================= */
+
+.portada_predeterminada {
+    background-color: var(--fondo_secundario);
+    color: var(--color_primario);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    width: 100%;
+    height: 220px;
+
+    border-radius: var(--radio);
+}
+
+.portada_libro img,
+.portada_grupo img,
+.portada_detalle img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: var(--radio);
+}
+
+/* =========================================
+   PIE DE PÁGINA
+========================================= */
+
+.pie_pagina {
+    background-color: var(--fondo_secundario);
+
+    border-top: 1px solid var(--color_borde);
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .encabezado {
+        flex-direction: column;
+        gap: 20px;
+
+        padding: 20px;
+    }
+
+    .navegacion {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contenido {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+}

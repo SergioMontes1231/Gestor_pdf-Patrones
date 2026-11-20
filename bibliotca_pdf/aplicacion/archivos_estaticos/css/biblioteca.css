@@ -1,0 +1,210 @@
+/* =========================================
+   ENCABEZADO DE BIBLIOTECA
+========================================= */
+
+.encabezado_biblioteca {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   BUSCADOR
+========================================= */
+
+.buscador {
+    margin-bottom: 30px;
+}
+
+.buscador form {
+    display: flex;
+    gap: 10px;
+}
+
+.buscador input {
+    flex: 1;
+}
+
+/* =========================================
+   LISTA DE LIBROS
+========================================= */
+
+.lista_libros {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(240px, 1fr));
+
+    gap: 25px;
+}
+
+/* =========================================
+   TARJETA DE LIBRO
+========================================= */
+
+.tarjeta_libro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.portada_libro {
+    width: 100%;
+    height: 260px;
+}
+
+.informacion_libro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.informacion_libro h2 {
+    font-size: 20px;
+}
+
+.paginas_libro {
+    font-size: 14px;
+}
+
+/* =========================================
+   ACCIONES
+========================================= */
+
+.acciones_libro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.acciones_libro a {
+    background-color: var(--fondo_secundario);
+
+    border: 1px solid var(--color_borde);
+    border-radius: 8px;
+
+    padding: 10px;
+
+    text-decoration: none;
+}
+
+.acciones_libro a:hover {
+    border-color: var(--color_primario);
+}
+
+/* =========================================
+   BIBLIOTECA VACÍA
+========================================= */
+
+.biblioteca_vacia {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    background-color: var(--fondo_tarjeta);
+
+    padding: 50px 20px;
+
+    border-radius: var(--radio);
+}
+
+/* =========================================
+   GRUPOS
+========================================= */
+
+.lista_grupos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(240px, 1fr));
+
+    gap: 25px;
+}
+
+.tarjeta_grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.portada_grupo {
+    height: 200px;
+}
+
+.informacion_grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grupos_vacios {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 50px;
+
+    background-color: var(--fondo_tarjeta);
+    border-radius: var(--radio);
+}
+
+/* =========================================
+   DETALLE DEL LIBRO
+========================================= */
+
+.contenido_detalle {
+    display: flex;
+    gap: 40px;
+
+    margin-top: 30px;
+}
+
+.portada_detalle {
+    width: 300px;
+    min-width: 250px;
+    height: 400px;
+}
+
+.informacion_detalle {
+    flex: 1;
+}
+
+.informacion_detalle h2 {
+    margin-top: 25px;
+}
+
+.acciones_detalle {
+    display: flex;
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.acciones_detalle form {
+    display: inline;
+}
+
+.acciones_detalle button {
+    background-color: var(--color_error);
+}
+
+@media (max-width: 768px) {
+
+    .buscador form {
+        flex-direction: column;
+    }
+
+    .contenido_detalle {
+        flex-direction: column;
+    }
+
+    .portada_detalle {
+        width: 100%;
+        max-width: 300px;
+    }
+
+}
