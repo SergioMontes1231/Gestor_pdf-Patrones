@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Grupos - Biblioteca PDF
+{% endblock %}
+
+{% block contenido %}
+
+<section class="pagina_grupos">
+
+    <div class="encabezado_grupos">
+
+        <h1>Mis grupos</h1>
+
+        <p>
+            Organiza tus documentos en grupos personalizados.
+        </p>
+
+    </div>
+
+    <section class="lista_grupos">
+
+        {% if grupos %}
+
+            {% for grupo in grupos %}
+
+                <article class="tarjeta_grupo">
+
+                    <div class="portada_grupo">
+
+                        {% if grupo.ruta_portada_grupo %}
+
+                            <img
+                                src="{{ grupo.ruta_portada_grupo }}"
+                                alt="Portada de {{ grupo.nombre_grupo }}"
+                            >
+
+                        {% else %}
+
+                            <div class="portada_predeterminada">
+                                Grupo
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="informacion_grupo">
+
+                        <h2>
+                            {{ grupo.nombre_grupo }}
+                        </h2>
+
+                        <p>
+                            {{ grupo.descripcion_grupo or
+                               "Sin descripción disponible." }}
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="grupos_vacios">
+
+                <h2>No tienes grupos creados</h2>
+
+                <p>
+                    Cuando crees grupos, aparecerán aquí.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</section>
+
+{% endblock %}

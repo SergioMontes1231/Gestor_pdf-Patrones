@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+{{ libro.nombre_pdf }} - Biblioteca PDF
+{% endblock %}
+
+{% block contenido %}
+
+<section class="detalle_libro">
+
+    <a href="{{ url_for('biblioteca.biblioteca') }}">
+        ← Regresar a la biblioteca
+    </a>
+
+    <div class="contenido_detalle">
+
+        <div class="portada_detalle">
+
+            {% if libro.ruta_portada_pdf %}
+
+                <img
+                    src="{{ libro.ruta_portada_pdf }}"
+                    alt="Portada de {{ libro.nombre_pdf }}"
+                >
+
+            {% else %}
+
+                <div class="portada_predeterminada">
+                    PDF
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="informacion_detalle">
+
+            <h1>{{ libro.nombre_pdf }}</h1>
+
+            <h2>Descripción</h2>
+
+            <p>
+                {{ libro.descripcion_pdf or
+                   "Sin descripción disponible." }}
+            </p>
+
+            <p>
+                <strong>Total de páginas:</strong>
+                {{ libro.total_paginas }}
+            </p>
+
+            <div class="acciones_detalle">
+
+                <a href="{{ url_for(
+                    'lector.leer_pdf',
+                    id_pdf=libro.id_pdf
+                ) }}">
+                    Leer documento
+                </a>
+
+                <form
+                    action="{{ url_for(
+                        'libros.eliminar_libro',
+                        id_pdf=libro.id_pdf
+                    ) }}"
+                    method="POST"
+                    onsubmit="return confirm(
+                        '¿Estás seguro de eliminar este libro?'
+                    );"
+                >
+
+                    <button type="submit">
+                        Eliminar libro
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
