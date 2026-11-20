@@ -49,6 +49,236 @@
                 {{ libro.total_paginas }}
             </p>
 
+            <section class="seccion_grupos_libro">
+
+                <h2>Grupos</h2>
+
+                {% if grupos_libro %}
+
+                    <div class="grupos_asignados">
+
+                        {% for grupo in grupos_libro %}
+
+                            <div class="grupo_asignado">
+
+                                <span>
+                                    📁 {{ grupo.nombre_grupo }}
+                                </span>
+
+                                <form
+                                    action="{{ url_for(
+                                        'libros.quitar_grupo',
+                                        id_pdf=libro.id_pdf,
+                                        id_grupo=grupo.id_grupo
+                                    ) }}"
+                                    method="POST"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="boton_eliminar"
+                                    >
+                                        Quitar
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        Este documento todavía no pertenece a ningún grupo.
+                    </p>
+
+                {% endif %}
+
+
+                {% if grupos %}
+
+                    <form
+                        action="{{ url_for(
+                            'libros.asignar_grupo',
+                            id_pdf=libro.id_pdf
+                        ) }}"
+                        method="POST"
+                        class="formulario_asignar_grupo"
+                    >
+
+                        <label for="id_grupo">
+                            Agregar a un grupo
+                        </label>
+
+                        <select
+                            name="id_grupo"
+                            id="id_grupo"
+                            required
+                        >
+
+                            <option value="">
+                                Selecciona un grupo
+                            </option>
+
+                            {% for grupo in grupos %}
+
+                                {% if grupo.id_grupo not in
+                                grupos_libro|map(attribute='id_grupo')|list %}
+
+                                    <option value="{{ grupo.id_grupo }}">
+                                        {{ grupo.nombre_grupo }}
+                                    </option>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </select>
+
+                        <button type="submit">
+                            Asignar grupo
+                        </button>
+
+                    </form>
+
+                {% else %}
+
+                    <p>
+                        Primero debes crear un grupo.
+                    </p>
+
+                {% endif %}
+
+            </section>
+            <section class="seccion_grupos_libro">
+
+                <h2>Autores</h2>
+
+                {% if autores_libro %}
+
+                    <div class="grupos_asignados">
+
+                        {% for autor in autores_libro %}
+
+                            <div class="grupo_asignado">
+
+                                <span>
+                                    👤 {{ autor.nombre_autor }}
+                                </span>
+
+                                <form
+                                    action="{{ url_for(
+                                        'libros.quitar_autor',
+                                        id_pdf=libro.id_pdf,
+                                        id_autor=autor.id_autor
+                                    ) }}"
+                                    method="POST"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="boton_eliminar"
+                                    >
+                                        Quitar
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        Este documento todavía no tiene autores asignados.
+                    </p>
+
+                {% endif %}
+
+
+                {% if autores %}
+
+                    <form
+                        action="{{ url_for(
+                            'libros.asignar_autor',
+                            id_pdf=libro.id_pdf
+                        ) }}"
+                        method="POST"
+                        class="formulario_asignar_grupo"
+                    >
+
+                        <label for="id_autor">
+                            Agregar autor
+                        </label>
+
+                        <select
+                            name="id_autor"
+                            id="id_autor"
+                            required
+                        >
+
+                            <option value="">
+                                Selecciona un autor
+                            </option>
+
+                            {% for autor in autores %}
+
+                                {% if autor.id_autor not in
+                                autores_libro|map(attribute='id_autor')|list %}
+
+                                    <option value="{{ autor.id_autor }}">
+                                        {{ autor.nombre_autor }}
+                                    </option>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </select>
+
+                        <button type="submit">
+                            Asignar autor
+                        </button>
+
+                    </form>
+
+                {% endif %}
+
+            </section>
+         
+            <form
+                action="{{ url_for(
+                    'libros.crear_autor',
+                    id_pdf=libro.id_pdf
+                ) }}"
+                method="POST"
+                class="formulario_asignar_grupo"
+            >
+
+                <label for="nombre_autor">
+                    Registrar nuevo autor
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre_autor"
+                    name="nombre_autor"
+                    placeholder="Nombre del autor"
+                    required
+                >
+
+                <button type="submit">
+                    Crear y asignar autor
+                </button>
+
+            </form>  
+
             <div class="acciones_detalle">
 
                 <a href="{{ url_for(

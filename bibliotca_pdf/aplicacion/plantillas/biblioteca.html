@@ -10,33 +10,113 @@ Biblioteca - Biblioteca PDF
 
     <div class="encabezado_biblioteca">
 
-        <div>
-            <h1>Mi biblioteca</h1>
+    <div>
+        <h1>Mi biblioteca</h1>
 
-            <p>
-                Todos tus documentos PDF en un solo lugar.
-            </p>
-        </div>
+        <p>
+            Todos tus documentos PDF en un solo lugar.
+        </p>
+    </div>
+
+    <button
+        type="button"
+        id="boton_importar"
+    >
+        Importar PDF
+    </button>
+
+</div>
+
+{% if busqueda %}
+
+    <div class="resultado_busqueda">
+
+        <p>
+            Resultados para:
+            <strong>{{ busqueda }}</strong>
+        </p>
+
+        <p>
+            Documentos encontrados: {{ libros|length }}
+        </p>
 
     </div>
 
-    <section class="buscador">
+{% endif %}
 
-        <form action="{{ url_for('biblioteca.buscar') }}"
-              method="GET">
+<div class="formulario_importacion" id="formulario_importacion">
 
-            <input
-                type="text"
-                name="q"
-                placeholder="Buscar un libro..."
-                value="{{ busqueda if busqueda else '' }}"
-            >
+    <h2>Agregar documento</h2>
+
+    <form
+        action="{{ url_for('libros.importar_pdf') }}"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <label for="archivo_pdf">
+            Seleccionar archivo PDF
+        </label>
+
+        <input
+            type="file"
+            id="archivo_pdf"
+            name="archivo_pdf"
+            accept=".pdf,application/pdf"
+            required
+        >
+
+        <label for="descripcion_pdf">
+            Descripción
+        </label>
+
+        <textarea
+            id="descripcion_pdf"
+            name="descripcion_pdf"
+            placeholder="Descripción del documento..."
+            rows="3"
+        ></textarea>
+
+        <div class="acciones_importacion">
 
             <button type="submit">
-                Buscar
+                Importar documento
             </button>
 
-        </form>
+        </div>
+
+    </form>
+
+</div>
+
+    <section class="buscador">
+
+        <form
+                action="{{ url_for('biblioteca.buscar') }}"
+                method="GET"
+                class="formulario_busqueda"
+            >
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ busqueda or '' }}"
+                    placeholder="Buscar por nombre del documento..."
+                >
+
+                <button type="submit">
+                    Buscar
+                </button>
+
+                {% if busqueda %}
+
+                    <a href="{{ url_for('biblioteca.biblioteca') }}">
+                        Limpiar búsqueda
+                    </a>
+
+                {% endif %}
+
+            </form>
 
     </section>
 

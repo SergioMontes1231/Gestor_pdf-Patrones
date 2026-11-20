@@ -126,14 +126,10 @@ class ServicioLibros:
         )
 
     def asociar_autor(self, id_pdf, id_autor):
-        """
-        Asocia un autor con un libro.
-        """
-
         self.repositorio.asociar_autor(
             id_pdf,
             id_autor
-        )
+    )
 
     def quitar_autor(self, id_pdf, id_autor):
         """
